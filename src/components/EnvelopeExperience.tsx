@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { WEDDING_CONFIG } from '@/config/weddingConfig';
 
@@ -12,6 +12,16 @@ export const EnvelopeExperience: React.FC<EnvelopeExperienceProps> = ({ onOpen }
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [hasTriggeredFade, setHasTriggeredFade] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      // Seek slightly past 0s on iOS Safari to force WebKit frame decoding and eliminate initial blank screen
+      video.currentTime = 0.001;
+    }
+  }, []);
 
   const handleTapAnywhere = async () => {
     const video = videoRef.current;
@@ -66,12 +76,14 @@ export const EnvelopeExperience: React.FC<EnvelopeExperienceProps> = ({ onOpen }
         preload="auto"
       />
 
-      {/* Video Thumbnail (Click Anywhere to Play with /bgm/audio.mpeg) */}
+      {/* Video Thumbnail with Complete iOS Safari Fixes (muted, playsInline, poster, preload=auto, #t=0.001) */}
       <video
         ref={videoRef}
-        src={WEDDING_CONFIG.envelopeVideoUrl}
+        src={`${WEDDING_CONFIG.envelopeVideoUrl}#t=0.001`}
+        poster={WEDDING_CONFIG.images.hero}
+        muted
         playsInline
-        preload="metadata"
+        preload="auto"
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleVideoEnded}
         className="w-full h-full object-cover"
