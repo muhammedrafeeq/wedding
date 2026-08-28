@@ -76,7 +76,7 @@ export const WEDDING_CONFIG: WeddingConfig = {
   nikahHeading: "Counting Down to Our Wedding",
   rsvpDeadline: "September 10, 2026",
   dressCode: "Modest Luxury Formal & Traditional",
-  musicTrackUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=wedding-piano-112702.mp3",
+  musicTrackUrl: "/bgm/audio.mpeg",
   envelopeVideoUrl: "/videos/envelope_opening.mp4",
   themeColors: {
     softIvory: "#F2F1E8",
