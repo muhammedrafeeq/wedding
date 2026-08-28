@@ -71,11 +71,34 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: WEDDING_CONFIG.socialSharing.title,
   description: WEDDING_CONFIG.socialSharing.description,
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', type: 'image/x-icon' }
+    ],
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
     title: WEDDING_CONFIG.socialSharing.title,
     description: WEDDING_CONFIG.socialSharing.description,
-    images: [WEDDING_CONFIG.socialSharing.ogImage],
+    images: [
+      {
+        url: WEDDING_CONFIG.socialSharing.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${WEDDING_CONFIG.groomName} & ${WEDDING_CONFIG.brideName} Wedding Invitation`,
+      }
+    ],
     type: 'website',
+    siteName: 'Muhammed Rafeeq & Jumana Wedding',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: WEDDING_CONFIG.socialSharing.title,
+    description: WEDDING_CONFIG.socialSharing.description,
+    images: [WEDDING_CONFIG.socialSharing.ogImage],
   },
 };
 

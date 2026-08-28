@@ -1,0 +1,21 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D2C08A" />
+      <stop offset="50%" stop-color="#9E824A" />
+      <stop offset="100%" stop-color="#D2C08A" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Circle -->
+  <circle cx="32" cy="32" r="30" fill="#F2F1E8" stroke="url(#goldGrad)" stroke-width="3" />
+  <circle cx="32" cy="32" r="26" fill="none" stroke="#D2C08A" stroke-width="1" stroke-dasharray="2 2" opacity="0.6" />
+
+  <!-- Monogram Initials M & J -->
+  <text x="32" y="38" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#9E824A" text-anchor="middle" letter-spacing="1">
+    M&amp;J
+  </text>
+
+  <!-- Sparkle Accent Top -->
+  <path d="M32 9L33.5 13.5L38 15L33.5 16.5L32 21L30.5 16.5L26 15L30.5 13.5L32 9Z" fill="#D2C08A" opacity="0.9" />
+</svg>

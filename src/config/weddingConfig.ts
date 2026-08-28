@@ -107,8 +107,8 @@ export const WEDDING_CONFIG: WeddingConfig = {
     ]
   },
   socialSharing: {
-    title: "Wedding Invitation — Muhammed Rafeeq & Jumana",
-    description: "Join us in celebrating the Wedding of Muhammed Rafeeq & Jumana on September 27, 2026 at Kohinoor Wedding Park, Padikkal, Malappuram.",
+    title: "Wedding Invitation — Muhammed Rafeeq & Jumana | Sept 27, 2026",
+    description: "With the blessings of Almighty Allah & our families, you are cordially invited to celebrate the Wedding of Muhammed Rafeeq & Jumana on Sunday, September 27, 2026 at Kohinoor Wedding Park, Padikkal, Malappuram.",
     ogImage: "/images/couple.png"
   }
 };
