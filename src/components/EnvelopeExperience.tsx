@@ -18,8 +18,9 @@ export const EnvelopeExperience: React.FC<EnvelopeExperienceProps> = ({ onOpen }
     if (video) {
       video.muted = true;
       video.defaultMuted = true;
-      // Seek slightly past 0s on iOS Safari to force WebKit frame decoding and eliminate initial blank screen
-      video.currentTime = 0.001;
+      video.play().catch((err) => {
+        console.warn('Autoplay initiated:', err);
+      });
     }
   }, []);
 
@@ -28,17 +29,17 @@ export const EnvelopeExperience: React.FC<EnvelopeExperienceProps> = ({ onOpen }
     const audio = audioRef.current;
     if (!video) return;
 
-    if (video.paused) {
-      video.muted = true; // Mute video native track so /bgm/audio.mpeg is the sole clean audio
-      try {
-        if (audio) {
-          audio.currentTime = 0;
-          audio.play().catch((err) => console.warn('Audio play error:', err));
-        }
-        await video.play();
-      } catch (err) {
-        console.warn('Video play error:', err);
+    video.muted = true;
+    try {
+      if (audio && audio.paused) {
+        audio.currentTime = 0;
+        await audio.play().catch((err) => console.warn('Audio play error:', err));
       }
+      if (video.paused) {
+        await video.play();
+      }
+    } catch (err) {
+      console.warn('Video play error:', err);
     }
   };
 
@@ -76,11 +77,12 @@ export const EnvelopeExperience: React.FC<EnvelopeExperienceProps> = ({ onOpen }
         preload="auto"
       />
 
-      {/* Video Thumbnail with Complete iOS Safari Fixes (muted, playsInline, poster, preload=auto, #t=0.001) */}
+      {/* Video (Auto-Plays Muted by Default on All Devices without Any Poster Blinking) */}
       <video
         ref={videoRef}
-        src={`${WEDDING_CONFIG.envelopeVideoUrl}#t=0.001`}
-        poster={WEDDING_CONFIG.images.hero}
+        src={WEDDING_CONFIG.envelopeVideoUrl}
+        autoPlay
+        loop
         muted
         playsInline
         preload="auto"
