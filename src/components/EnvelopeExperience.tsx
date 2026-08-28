@@ -10,18 +10,24 @@ interface EnvelopeExperienceProps {
 
 export const EnvelopeExperience: React.FC<EnvelopeExperienceProps> = ({ onOpen }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [hasTriggeredFade, setHasTriggeredFade] = useState(false);
 
   const handleTapAnywhere = async () => {
     const video = videoRef.current;
+    const audio = audioRef.current;
     if (!video) return;
 
     if (video.paused) {
-      video.muted = false; // Unmute audio on click
+      video.muted = true; // Mute video native track so /bgm/audio.mpeg is the sole clean audio
       try {
+        if (audio) {
+          audio.currentTime = 0;
+          audio.play().catch((err) => console.warn('Audio play error:', err));
+        }
         await video.play();
       } catch (err) {
-        console.warn('Play error:', err);
+        console.warn('Video play error:', err);
       }
     }
   };
@@ -53,7 +59,14 @@ export const EnvelopeExperience: React.FC<EnvelopeExperienceProps> = ({ onOpen }
       onClick={handleTapAnywhere}
       className="fixed inset-0 w-full h-[100dvh] bg-[#F2F1E8] overflow-hidden select-none touch-none cursor-pointer z-50 flex items-center justify-center"
     >
-      {/* Video Thumbnail (Click Anywhere to Play) -> Fades 3s Before Video Completion */}
+      {/* Synchronized Background Audio Track */}
+      <audio
+        ref={audioRef}
+        src={WEDDING_CONFIG.musicTrackUrl}
+        preload="auto"
+      />
+
+      {/* Video Thumbnail (Click Anywhere to Play with /bgm/audio.mpeg) */}
       <video
         ref={videoRef}
         src={WEDDING_CONFIG.envelopeVideoUrl}
