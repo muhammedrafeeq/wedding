@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 242 241 232; /* #F2F1E8 Soft Ivory */
+    --foreground: 58 44 24; /* #3a2c18 Deep Bronze */
+    --gold: 210 192 138; /* #D2C08A Champagne Gold */
+    --gold-light: 235 220 175;
+    --bronze: 158 130 74; /* #9E824A Antique Gold / Bronze */
+    --cream: 245 244 238;
+  }
+
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+    font-family: var(--font-sans), system-ui, sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom Typography Utility Classes */
+.font-serif-display {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Playfair Display, Georgia, serif;
+}
+
+.font-serif-heading {
+  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
+}
+
+.font-script {
+  font-family: var(--font-script), 'Great Vibes', 'Alex Brush', cursive, sans-serif;
+}
+
+.font-curly {
+  font-family: var(--font-curly), 'Pinyon Script', 'Great Vibes', cursive, sans-serif;
+}
+
+.font-arabic {
+  font-family: var(--font-arabic), 'Lateef', 'El Messiri', 'Amiri', 'Traditional Arabic', serif;
+  direction: rtl;
+}
+
+.font-arabic-heading {
+  font-family: var(--font-arabic-heading), 'El Messiri', 'Lateef', 'Amiri', serif;
+  direction: rtl;
+}
+
+/* Color Palette Gradients (#F2F1E8, #D2C08A, #9E824A) */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #9E824A 0%, #D2C08A 45%, #9E824A 80%, #D2C08A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, #9E824A 0%, #D2C08A 50%, #9E824A 100%);
+  background-size: 200% auto;
+  animation: shine 4s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Clip Paths */
+.clip-arch {
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+}
+
+/* Soft Ivory Paper & Gold Foil Embossed Borders */
+.envelope-paper {
+  background: linear-gradient(145deg, #ffffff 0%, #F2F1E8 50%, #eae8db 100%);
+  box-shadow: 
+    0 25px 50px -12px rgba(158, 130, 74, 0.25),
+    0 0 0 1px rgba(210, 192, 138, 0.5),
+    0 0 20px rgba(210, 192, 138, 0.2),
+    inset 0 0 25px rgba(255, 255, 255, 0.9);
+}
+
+.envelope-foil-border {
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(#F2F1E8, #F2F1E8) padding-box,
+    linear-gradient(135deg, #D2C08A, #9E824A, #D2C08A) border-box;
+}
+
+.card-paper {
+  background: linear-gradient(135deg, #ffffff 0%, #F2F1E8 65%, #eae8db 100%);
+  color: #3a2c18;
+  box-shadow: 
+    0 15px 35px rgba(158, 130, 74, 0.12),
+    0 0 0 1px rgba(210, 192, 138, 0.4);
+}
+
+/* Keyframe Animations */
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(210, 192, 138, 0.3), 0 0 30px rgba(158, 130, 74, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(210, 192, 138, 0.5), 0 0 50px rgba(158, 130, 74, 0.3);
+  }
+}
+
+.glow-pulse {
+  animation: pulseGlow 3.5s infinite ease-in-out;
+}
+
+/* Glassmorphism Soft Ivory Luxury Panels */
+.glass-panel {
+  background: rgba(242, 241, 232, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(210, 192, 138, 0.4);
+  box-shadow: 0 12px 32px rgba(158, 130, 74, 0.08);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(210, 192, 138, 0.35);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F2F1E8;
+}
+::-webkit-scrollbar-thumb {
+  background: #D2C08A;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9E824A;
+}
